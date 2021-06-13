@@ -33,7 +33,7 @@ class FragmentCollection extends Collection
             
             return Str::startsWith(trim($key, '/'), $uriKey);
         }, function() {
-            return $this->fallbacks()->first();
+            return $this->root()->first();
         });
     }
 
@@ -42,10 +42,10 @@ class FragmentCollection extends Collection
      *
      * @return \Zareismail\Cypress\Fragment|null
      */
-    public function fallbacks()
+    public function root()
     { 
         return $this->filter(function($fragment) {  
-            return $fragment::fallback();
+            return $fragment::root();
         });
     }
 
