@@ -64,11 +64,22 @@ trait InteractsWithComponents
      */
     public function component()
     {   
-        $uriKey = $this->route('component') ?: $this->route()->getPrefix();
-
-        return tap(Cypress::componentForKey($uriKey), function($component) {
+        return tap($this->matchedComponent() ?? Cypress::fallbackComponent(), function($component) {
             abort_if(is_null($component), 404);  
         });
+    }
+
+    /**
+     * Get the class name of the component that matches the request.
+     *
+     * @return mixed
+     */
+    public function matchedComponent()
+    {   
+        $uriKey = trim($this->route()->getPrefix(), '/');
+
+        return empty($uriKey) ? Cypress::rootComponent() : Cypress::componentForKey($uriKey);  
+
     }
 
     /**

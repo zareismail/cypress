@@ -38,6 +38,36 @@ abstract class Component extends Resource
     }
 
     /**
+     * Get the route prefix for the component.
+     *
+     * @return string
+     */
+    public static function routePrefix(): string
+    { 
+        return static::root() ? '/' : static::uriKey();
+    }
+     
+    /**
+     * Determine if the component is a root component.
+     *
+     * @return boolean
+     */
+    public static function root(): bool
+    { 
+        return false;
+    }
+     
+    /**
+     * Determine if the component is a fallback component.
+     *
+     * @return boolean
+     */
+    public static function fallback(): bool
+    { 
+        return false;
+    }
+
+    /**
      * Get the component fragments.
      *
      * @return string

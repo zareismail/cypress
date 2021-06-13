@@ -104,10 +104,32 @@ class Cypress
      * @param  string  $key
      * @return string
      */
-    public static function componentForKey(string $key)
+    public static function componentForKey(string $key = null)
+    { 
+        return static::componentCollection()->find(trim($key, '/'));
+    }
+
+    /**
+     * Get the root component class name.
+     * 
+     * @return string
+     */
+    public static function rootComponent()
     {
-        return static::componentCollection()->first(function ($value) use ($key) {
-            return trim($value::uriKey(), '/') === trim($key, '/');
+        return static::componentCollection()->first(function($component) {
+            return $component::root();
+        });
+    }
+
+    /**
+     * Get the fallback component class name.
+     * 
+     * @return string
+     */
+    public static function fallbackComponent()
+    {
+        return static::componentCollection()->first(function($component) {
+            return $component::fallback();
         });
     }
 }

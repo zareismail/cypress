@@ -48,7 +48,7 @@ class PendingRouteRegistration
     public function mapWebRoutes()
     { 
         Cypress::componentCollection()->each(function($component) {
-            Route::prefix($component::uriKey())
+            Route::prefix($component::routePrefix())
                 ->group(function($router) use ($component) {
                     $router->get('/', 'ComponentController@handle')
                            ->name($component::uriKey().'.index');
