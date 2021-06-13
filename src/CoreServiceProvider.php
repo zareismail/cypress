@@ -4,6 +4,8 @@ namespace Zareismail\Cypress;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider; 
+use Illuminate\Contracts\Http\Kernel as HttpKernel; 
+use Zareismail\Cypress\Http\Middleware\ServeCypress;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -16,9 +18,12 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cypress');
 
-        $this->app->booted(function () {
-            $this->routes();
-        }); 
+        $this->app->make(HttpKernel::class)
+                    ->pushMiddleware(ServeCypress::class);
+
+        $this->app->booted(function() {
+            return $this->routes();
+        });
     }
 
     /**
@@ -28,9 +33,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     protected function routes()
     {
-        if ($this->app->routesAreCached()) {
-            return;
-        } 
+        $this->app->routesAreCached() || Cypress::routes(); 
     }
 
     /**
@@ -39,7 +42,6 @@ class CoreServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
-        //
+    {    
     }
 }
