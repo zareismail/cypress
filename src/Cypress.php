@@ -104,7 +104,7 @@ class Cypress
      * @param  string  $key
      * @return string
      */
-    public static function componentForKey($key = null)
+    public static function componentForKey(string $key)
     {
         return static::componentCollection()->first(function ($value) use ($key) {
             return trim($value::uriKey(), '/') === trim($key, '/');
