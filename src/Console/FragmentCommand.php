@@ -2,9 +2,7 @@
 
 namespace Zareismail\Cypress\Console;
 
-use Illuminate\Console\GeneratorCommand;
-use Illuminate\Support\Str;
-use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Console\GeneratorCommand;  
 
 class FragmentCommand extends GeneratorCommand
 {
