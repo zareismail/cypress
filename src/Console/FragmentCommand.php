@@ -47,6 +47,6 @@ class FragmentCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Cypress';
+        return $rootNamespace.'\Cypress\Fragments';
     } 
 }
