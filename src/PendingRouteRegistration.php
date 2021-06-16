@@ -49,6 +49,7 @@ class PendingRouteRegistration
     { 
         Cypress::componentCollection()->each(function($component) {
             Route::prefix($component::routePrefix())
+                ->middleware($component::middlewares())
                 ->group(function($router) use ($component) {
                     $router->get('/', 'ComponentController@handle')
                            ->name($component::uriKey().'.index');
