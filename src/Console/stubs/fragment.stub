@@ -1,0 +1,21 @@
+<?php
+
+namespace {{ namespace }};
+
+use Zareismail\Cypress\Fragment; 
+use Zareismail\Cypress\Contracts\Resolvable;
+use Zareismail\Cypress\Http\Requests\CypressRequest;
+
+class {{ class }} extends Fragment implements Resolvable
+{      
+    /**
+     * Resolve the resoruce's value for the given request.
+     *
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest  $request 
+     * @return void
+     */
+    public function resolve($request): bool
+    {
+        return true;
+    }
+}
