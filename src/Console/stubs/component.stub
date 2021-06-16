@@ -3,6 +3,8 @@
 namespace {{ namespace }};
 
 use Zareismail\Cypress\Component; 
+use Zareismail\Cypress\Contracts\Resolvable;
+use Zareismail\Cypress\Http\Requests\CypressRequest;
 
 class {{ class }} extends Component
 {    
@@ -12,6 +14,17 @@ class {{ class }} extends Component
      * @var string
      */ 
     public $layout = \{{ layout }}::class;
+    
+    /**
+     * Resolve the resoruce's value for the given request.
+     *
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest  $request 
+     * @return void
+     */
+    public function resolve($request): bool
+    {
+        return true;
+    }
 
     /**
      * Get the component fragments.
