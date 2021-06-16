@@ -4,7 +4,7 @@ namespace Zareismail\Cypress\Console;
 
 use Illuminate\Support\Str;
 
-trait ResolvesStubViewName
+trait ResolvesViewName
 { 
     /**
      * Get the view name relative to the components directory.

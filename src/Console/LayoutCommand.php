@@ -7,7 +7,7 @@ use Illuminate\Console\GeneratorCommand;
 class LayoutCommand extends GeneratorCommand
 {
     use ResolvesStubPath;
-    use ResolvesStubViewName;
+    use ResolvesViewName;
 
     /**
      * The console command name.
