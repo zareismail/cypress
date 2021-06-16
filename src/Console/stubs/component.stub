@@ -1,0 +1,26 @@
+<?php
+
+namespace {{ namespace }};
+
+use Zareismail\Cypress\Component; 
+
+class {{ class }} extends Component
+{    
+    /**
+     * The display layout class name.
+     * 
+     * @var string
+     */ 
+    public $layout = \{{ layout }}::class;
+
+    /**
+     * Get the component fragments.
+     *
+     * @return string
+     */
+    public function fragments(): array
+    {
+        return [
+        ];
+    }
+}

@@ -32,10 +32,7 @@ abstract class Component extends Resource
      *
      * @return string
      */
-    public function fragments(): array
-    {  
-        return [];
-    }
+    abstract public function fragments(): array;
 
     /**
      * Get the route prefix for the component.

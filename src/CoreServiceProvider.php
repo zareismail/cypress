@@ -42,6 +42,9 @@ class CoreServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {    
+    {
+        $this->commands([ 
+            Console\ComponentCommand::class, 
+        ]);
     }
 }
