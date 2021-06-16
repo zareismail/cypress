@@ -1,0 +1,40 @@
+<?php
+
+namespace {{ namespace }};
+
+use Zareismail\Cypress\Plugin;  
+use Zareismail\Cypress\Http\Requests\CypressRequest;
+
+class {{ class }} extends Plugin
+{       
+    /**
+     * Bootstrap the resource for the given request.
+     * 
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest $request 
+     * @param  \Zareismail\Cypress\Layout $layout 
+     * @return void                  
+     */
+    public function boot(CypressRequest $request, $layout)
+    { 
+    }
+
+    /**
+     * Determine if the plugin should be loaded as html meta.
+     *  
+     * @return bool              
+     */
+    public function asMetadata(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Get the evaluated contents of the object.
+     *
+     * @return string
+     */
+    public function render()
+    {
+        return '<script src=""></script>';
+    }
+}

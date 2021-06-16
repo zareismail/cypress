@@ -49,6 +49,7 @@ class CoreServiceProvider extends ServiceProvider
             Console\WidgetCommand::class, 
             Console\LayoutCommand::class, 
             Console\DisplayCommand::class, 
+            Console\PluginCommand::class, 
         ]);
     }
 }
