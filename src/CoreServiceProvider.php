@@ -47,6 +47,8 @@ class CoreServiceProvider extends ServiceProvider
             Console\ComponentCommand::class, 
             Console\FragmentCommand::class, 
             Console\WidgetCommand::class, 
+            Console\LayoutCommand::class, 
+            Console\DisplayCommand::class, 
         ]);
     }
 }

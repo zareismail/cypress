@@ -1,0 +1,41 @@
+<?php
+
+namespace {{ namespace }};
+
+use Zareismail\Cypress\Layout;  
+use Zareismail\Cypress\Http\Requests\CypressRequest;
+
+class {{ class }} extends Layout
+{        
+    /**
+     * Get the viewName name for the layout.
+     *
+     * @return string
+     */
+    public function viewName(): string
+    {
+        return '{{ viewName }}';
+    }
+
+    /**
+     * Get the widgets available on the entity.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function widgets(Request $request)
+    {
+        return [];
+    }
+
+    /**
+     * Get the plugins available on the entity.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function plugins(Request $request)
+    {
+        return [];
+    } 
+}
