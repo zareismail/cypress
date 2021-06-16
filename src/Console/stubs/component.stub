@@ -6,7 +6,7 @@ use Zareismail\Cypress\Component;
 use Zareismail\Cypress\Contracts\Resolvable;
 use Zareismail\Cypress\Http\Requests\CypressRequest;
 
-class {{ class }} extends Component
+class {{ class }} extends Component implements Resolvable
 {    
     /**
      * The display layout class name.
