@@ -46,6 +46,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->commands([ 
             Console\ComponentCommand::class, 
             Console\FragmentCommand::class, 
+            Console\WidgetCommand::class, 
         ]);
     }
 }

@@ -1,0 +1,30 @@
+<?php
+
+namespace {{ namespace }};
+
+use Zareismail\Cypress\Widget;  
+use Zareismail\Cypress\Http\Requests\CypressRequest;
+
+class {{ class }} extends Widget
+{       
+    /**
+     * Bootstrap the resource for the given request.
+     * 
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest $request 
+     * @param  \Zareismail\Cypress\Layout $layout 
+     * @return void                  
+     */
+    public function boot(CypressRequest $request, $layout)
+    { 
+    }
+
+    /**
+     * Get the evaluated contents of the object.
+     *
+     * @return string
+     */
+    public function render()
+    {
+        return "Wdiget: {$this->name}";
+    }
+}
