@@ -2,8 +2,8 @@
 
 namespace {{ namespace }};
 
+use Illuminate\Http\Request;
 use Zareismail\Cypress\Layout;  
-use Zareismail\Cypress\Http\Requests\CypressRequest;
 
 class {{ class }} extends Layout
 {        
