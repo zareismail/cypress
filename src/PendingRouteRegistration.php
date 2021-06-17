@@ -38,6 +38,9 @@ class PendingRouteRegistration
             ->group(function($router) {
                 $this->mapWebRoutes(); 
             }); 
+            
+        app('router')->getRoutes()->refreshNameLookups();
+        app('router')->getRoutes()->refreshActionLookups();
     }
 
     /**
