@@ -47,29 +47,7 @@ class FragmentCollection extends Collection
         return $this->filter(function($fragment) {  
             return $fragment::root();
         });
-    }
-
-    /**
-     * Sort fragments by URI key length.
-     * 
-     * @return $this
-     */
-    public function sortByUri()
-    { 
-        return $this->sortBy(function($fragment) {
-            return strlen(trim($fragment::uriKey(), '/'));
-        });
-    }
-
-    /**
-     * Sort fragments by URI key length in the reverse order.
-     * 
-     * @return $this
-     */
-    public function sortByUriDesc()
-    { 
-        return $this->sortByUri()->reverse();
-    }
+    } 
 
     /**
      * Get the array of uri keys.
