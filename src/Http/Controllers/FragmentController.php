@@ -15,13 +15,7 @@ class FragmentController extends Controller
      * @return \Illuminate\View\View
      */
     public function handle(FragmentRequest $request)
-    {  
-        $component = $request->resolveComponent();  
-        $fragment  = $request->resolveFragment();  
-
-        return (string) $component->layout($request)->withMeta([
-            'fragment'  => $fragment->jsonSerialize(),
-            'component' => $component->jsonSerialize(),
-        ]);   
+    {   
+        return $request->resolveFragment()->response($request);   
     }
 }

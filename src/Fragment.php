@@ -38,5 +38,37 @@ abstract class Fragment extends Resource
     {
         return array_merge(parent::jsonSerialize(), [  
         ]);
-    }      
+    }  
+
+    /**
+     * Create an HTTP response that represents the object.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function toResponse($request)
+    {
+        $component = $request->resolveComponent()->withMeta([
+            'fragment' => $this->jsonSerialize(),
+        ]);
+
+        return $component->response($request);
+    }     
+
+    /**
+     * Create an HTTP json response that represents the object.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function toJsonResponse($request)
+    {
+        $component = $request->resolveComponent();
+ 
+        $this->withMeta([ 
+            'layout' =>  $component->layout($request)->jsonSerialize(),
+        ]);
+
+        return parent::toJsonResponse($request);
+    }
 }

@@ -85,4 +85,19 @@ abstract class Component extends Resource
             'fragments' => $this->fragmentCollection()->uriKeys(), 
         ]);
     }
+
+    /**
+     * Create an HTTP response that represents the object.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function toResponse($request)
+    {
+        $layout = $this->layout($request)->withMeta([ 
+            'component' => $this->jsonSerialize(),
+        ]);
+
+        return $layout->response($request);
+    } 
 }

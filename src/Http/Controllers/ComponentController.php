@@ -16,10 +16,6 @@ class ComponentController extends Controller
      */
     public function handle(ComponentRequest $request)
     { 
-        $component = $request->resolveComponent(); 
-
-        return (string) $component->layout($request)->withMeta([ 
-            'component' => $component->jsonSerialize(),
-        ]);  
+        return $request->resolveComponent()->response($request);  
     }
 }

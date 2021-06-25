@@ -48,4 +48,19 @@ trait Displayable
             $layout->bootIfNotBooted($request, $this);
         });
     }   
+
+    /**
+     * Create an HTTP json response that represents the object.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function toJsonResponse($request)
+    {
+        $this->withMeta([
+            'layout' => $this->layout($request)->jsonSerialize(),
+        ]);
+
+        return parent::toJsonResponse($request);
+    }
 }
