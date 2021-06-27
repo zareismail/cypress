@@ -3,6 +3,7 @@
 namespace Zareismail\Cypress;
  
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Str;
 use Zareismail\Cypress\Http\Requests\CypressRequest;
 use Zareismail\Cypress\Events\WidgetBooted;
 
@@ -26,7 +27,7 @@ abstract class Widget extends Resource implements Renderable
      */
     public function __construct(string $name)
     {
-        $this->name = $name;
+        $this->name = Str::slug($name);
     }
 
     /**

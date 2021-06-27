@@ -36,11 +36,14 @@ class FragmentRequest extends ComponentRequest
     /**
      * Get the class name of the fragment being requested.
      *
+     * @param string|null $uriKey
      * @return mixed
      */
-    public function fragment()
-    {     
-        return tap($this->availableFragments()->match($this->route('fragment')), function($fragment) {
+    public function fragment($uriKey = null)
+    {      
+        $uriKey = $this->route('fragment', $uriKey);
+
+        return tap($this->availableFragments()->match($uriKey), function($fragment) {
             abort_if(is_null($fragment), 404);
         });
     }
