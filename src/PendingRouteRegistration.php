@@ -57,7 +57,7 @@ class PendingRouteRegistration
                     $router->get('/', 'ComponentController@handle')
                            ->name($component::uriKey().'.index');
 
-                    $router->get('/widget/{widget}', 'WidgetController@handle')
+                    $router->post('/widget/{widget}', 'WidgetController@handle')
                         ->name($component::uriKey().'.widget');  
 
                     $router->get('/{fragment}', 'FragmentController@handle')
