@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Zareismail\Cypress\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
