@@ -97,7 +97,7 @@ class Cypress
      */
     public static function availableComponents(Request $request)
     {
-        return static::componentCollection($request)->all();
+        return static::componentCollection()->all();
     }
 
     /**
