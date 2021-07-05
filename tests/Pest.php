@@ -11,7 +11,7 @@
 |
 */
 
-uses(Orchestra\Testbench\TestCase::class)->in('Feature');
+// uses(Orchestra\Testbench\TestCase::class);
 
 /*
 |--------------------------------------------------------------------------
