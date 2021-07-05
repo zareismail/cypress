@@ -2,6 +2,8 @@
 
 namespace Zareismail\Cypress; 
 
+use Illuminate\Http\Request;
+
 class Cypress
 {   
     /**
