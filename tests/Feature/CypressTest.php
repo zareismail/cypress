@@ -28,9 +28,13 @@ it('can find component for the key', function() {
 
 it('can find the root component', function() { 
     Cypress::components([
-        Home::class, 
+        Blog::class,
+        Error::class,
+        Home::class,
     ]);
 
+    $this->assertFalse(Blog::root());
+    $this->assertFalse(Error::root());
     $this->assertTrue(Home::root());
 	$this->assertEquals(Home::class, Cypress::rootComponent()); 
 });  
