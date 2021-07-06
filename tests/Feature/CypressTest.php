@@ -41,9 +41,13 @@ it('can find the root component', function() {
 
 it('can find the fallback component', function() { 
     Cypress::components([
-        Error::class, 
+        Blog::class,
+        Error::class,
+        Home::class,
     ]);
 
+    $this->assertFalse(Blog::fallback());
+    $this->assertFalse(Home::fallback());
     $this->assertTrue(Error::fallback());
 	$this->assertEquals(Error::class, Cypress::fallbackComponent()); 
 });   
