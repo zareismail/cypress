@@ -1,5 +1,7 @@
 <?php  
 
+namespace Zareismail\Cypress\Tests\Feature;
+
 use Illuminate\Support\Facades\Event;
 use Zareismail\Cypress\Http\Requests\CypressRequest; 
 use Zareismail\Cypress\Layout; 
