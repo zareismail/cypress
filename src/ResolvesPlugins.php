@@ -9,13 +9,6 @@ use Zareismail\Cypress\Collections\PluginCollection;
 trait ResolvesPlugins
 {
     /**
-     * List of plugins that should load.
-     * 
-     * @var array
-     */
-    protected $plugins = [];
-
-    /**
      * Get the plugins that are available for the given request.
      *
      * @param  \Zareismail\Cypress\Http\Requests\CypressRequest  $request
