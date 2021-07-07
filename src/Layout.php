@@ -12,13 +12,6 @@ abstract class Layout extends Resource implements Htmlable
     use Makeable;
     use ResolvesPlugins; 
     use ResolvesWidgets; 
-    
-    /**
-     * Array of loaded plugins.
-     * 
-     * @var array
-     */
-    protected $plugins = [];
 
     /**
      * Bootstrap the resource for the given request.
@@ -65,37 +58,12 @@ abstract class Layout extends Resource implements Htmlable
      */
     public function bootstrapPlugins(CypressRequest $request)
     {
-        $this->availablePlugins($request)->each(function($plugin) use ($request) {  
-            $this->loadPlugin($request, $plugin);
-        });
+        return $this->withMeta([ 
+            'plugins' => $this->availablePlugins($request)->each->bootIfNotBooted($request, $this),
+        ]);
 
         return $this;
-    }
-
-    /**
-     * Bootstrap a plugin for incoming request.
-     * 
-     * @param Zareismail\Cypress\Plugin $plugin 
-     * @return $this
-     */
-    public function loadPlugin(CypressRequest $request, Plugin $plugin)
-    {    
-        $plugin->bootIfNotBooted($request, $this);
-
-        $this->plugins[] = $plugin;
-        
-        return $this;
-    } 
-
-    /**
-     * Returns list of loaded plugins.
-     *  
-     * @return array
-     */
-    public function loadedPlugins()
-    {    
-        return $this->plugins;
-    }           
+    }     
 
     /**
      * Get the viewName name for the layout.
@@ -111,8 +79,7 @@ abstract class Layout extends Resource implements Htmlable
      */
     public function jsonSerialize()
     {
-        return array_merge(parent::jsonSerialize(), [ 
-            'plugins' => $this->loadedPlugins(),
+        return array_merge(parent::jsonSerialize(), [  
             'viewName' => $this->viewName(),
         ]);
     }
