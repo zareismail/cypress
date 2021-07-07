@@ -5,16 +5,6 @@ namespace Zareismail\Cypress\Http\Requests;
 class WidgetRequest extends FragmentRequest
 {      
     /**
-     * Determine if this request is an FragmentRequest request.
-     *
-     * @return bool
-     */
-    public function isFragmentRequest()
-    {
-        return $this->filled('fragment');
-    }  
-
-    /**
      * Get bootstrapped instance of the widget being requested.
      *
      * @param string|null $uriKey
