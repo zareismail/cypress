@@ -12,7 +12,7 @@ uses(\Orchestra\Testbench\TestCase::class);
 it('dispatch booting event', function() { 
     Event::fake();
 
-    SimplePlugin::make()->bootIfNotBooted(CypressRequest::create('/'), SimpleLayout::make());  
+    SimplePlugin::make()->bootIfNotBooted(CypressRequest::create('/'), PluginLayout::make());  
 
     Event::assertDispatched(\Zareismail\Cypress\Events\PluginBooted::class); 
 });     
@@ -30,7 +30,7 @@ class SimplePlugin extends Plugin
     }
 } 
 
-class SimpleLayout extends Layout 
+class PluginLayout extends Layout 
 { 
     /**
      * Get the viewName name for the layout.

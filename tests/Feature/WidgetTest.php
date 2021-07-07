@@ -12,7 +12,7 @@ uses(\Orchestra\Testbench\TestCase::class);
 it('dispatch booting event', function() { 
     Event::fake();
 
-    SimpleWidget::make('simple')->bootIfNotBooted(CypressRequest::create('/'), SimpleLayout::make()); 
+    SimpleWidget::make('simple')->bootIfNotBooted(CypressRequest::create('/'), WidgetLayout::make()); 
 
     Event::assertDispatched(\Zareismail\Cypress\Events\WidgetBooted::class); 
 });  
@@ -30,7 +30,7 @@ class SimpleWidget extends Widget
     }
 } 
 
-class SimpleLayout extends Layout 
+class WidgetLayout extends Layout 
 { 
     /**
      * Get the viewName name for the layout.
