@@ -1,7 +1,10 @@
 <?php  
 
+namespace Zareismail\Cypress\Tests\Feature;
+
 use Illuminate\Support\Facades\Event;
 use Zareismail\Cypress\Http\Requests\CypressRequest; 
+use Zareismail\Cypress\Layout; 
 use Zareismail\Cypress\Plugin; 
 
 uses(\Orchestra\Testbench\TestCase::class); 
@@ -9,11 +12,10 @@ uses(\Orchestra\Testbench\TestCase::class);
 it('dispatch booting event', function() { 
     Event::fake();
 
-    (new SimplePlugin)->bootIfNotBooted(CypressRequest::create('/'), new SimplePlugin);  
+    SimplePlugin::make()->bootIfNotBooted(CypressRequest::create('/'), SimpleLayout::make());  
 
     Event::assertDispatched(\Zareismail\Cypress\Events\PluginBooted::class); 
 });     
-
 
 class SimplePlugin extends Plugin 
 { 
@@ -25,5 +27,18 @@ class SimplePlugin extends Plugin
     public function render()
     {
         return '';
+    }
+} 
+
+class SimpleLayout extends Layout 
+{ 
+    /**
+     * Get the viewName name for the layout.
+     *
+     * @return string
+     */
+    public function viewName(): string
+    {
+
     }
 } 
