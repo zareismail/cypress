@@ -8,6 +8,7 @@ use Zareismail\Cypress\Events\PluginBooted;
 
 abstract class Plugin extends Resource implements Renderable
 {   
+    use AuthorizedToSee;
     use Bootable;
     use Makeable;
 
