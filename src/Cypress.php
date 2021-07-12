@@ -80,6 +80,19 @@ class Cypress
     } 
 
     /**
+     * Replace the registered components with the given components.
+     *
+     * @param  array  $components
+     * @return static
+     */
+    public static function replaceComponents(array $components)
+    {
+        static::$components = $components;
+
+        return new static;
+    }
+
+    /**
      * Return the base collection of Cypress components.
      *
      * @return \Zareismail\Cypress\ComponentCollection
