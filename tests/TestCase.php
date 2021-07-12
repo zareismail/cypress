@@ -17,6 +17,7 @@ class TestCase extends BaseTestCase
     {
         return [
             'Zareismail\Cypress\CoreServiceProvider',
+            'Zareismail\Cypress\Tests\ServiceProvider',
         ];
     } 
 }
