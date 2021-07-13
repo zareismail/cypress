@@ -119,22 +119,10 @@ class Cypress
      * @param  string  $key
      * @return string
      */
-    public static function componentForKey(string $key = null)
+    public static function componentForKey(string $key)
     { 
         return static::componentCollection()->find(trim($key, '/'));
-    }
-
-    /**
-     * Get the root component class name.
-     * 
-     * @return string
-     */
-    public static function rootComponent()
-    {
-        return static::componentCollection()->first(function($component) {
-            return $component::root();
-        });
-    }
+    } 
 
     /**
      * Get the fallback component class name.

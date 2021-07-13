@@ -20,11 +20,11 @@ abstract class Fragment extends Resource
     }
      
     /**
-     * Determine if the fragment is the root.
+     * Determine if the fragment is the fallback.
      *
      * @return boolean
      */
-    public static function root(): bool
+    public static function fallback(): bool
     { 
         return false;
     }

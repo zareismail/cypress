@@ -51,7 +51,7 @@ class PendingRouteRegistration
     public function mapWebRoutes()
     { 
         Cypress::componentCollection()->each(function($component) {
-            Route::prefix($component::routePrefix())
+            Route::prefix($component::fallback() ? '/' : $component::uriKey())
                 ->middleware($component::middlewares())
                 ->group(function($router) use ($component) {
                     $router->get('/', 'ComponentController@handle')

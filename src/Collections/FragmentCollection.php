@@ -33,19 +33,19 @@ class FragmentCollection extends Collection
             
             return Str::startsWith(trim($key, '/'), $uriKey);
         }, function() {
-            return $this->root()->first();
+            return $this->fallback()->first();
         });
     }
 
     /**
-     * Find the first fragment matching a given key.
+     * Get fallback fragments.
      *
      * @return \Zareismail\Cypress\Fragment|null
      */
-    public function root()
+    public function fallback()
     { 
         return $this->filter(function($fragment) {  
-            return $fragment::root();
+            return $fragment::fallback();
         });
     } 
 

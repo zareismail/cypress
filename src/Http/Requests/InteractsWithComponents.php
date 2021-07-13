@@ -78,7 +78,7 @@ trait InteractsWithComponents
     {   
         $uriKey = trim($this->route()->getPrefix(), '/');
 
-        return empty($uriKey) ? Cypress::rootComponent() : Cypress::componentForKey($uriKey);  
+        return Cypress::componentForKey($uriKey);  
 
     }
 
