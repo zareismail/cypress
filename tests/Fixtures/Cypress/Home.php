@@ -44,11 +44,11 @@ class Home extends Component implements Resolvable
     }
      
     /**
-     * Determine if the component is a root component.
+     * Determine if the component is a fallback component.
      *
      * @return boolean
      */
-    public static function root(): bool
+    public static function fallback(): bool
     { 
         return true;
     }
