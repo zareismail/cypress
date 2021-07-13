@@ -10,8 +10,7 @@ it('can get version')->assertTrue((bool) preg_match_all('/^1\.\d+\.\d+/s', Cypre
 
 it('can get available components', function() { 
     Cypress::components($components = [
-        Blog::class,
-        Error::class,
+        Blog::class, 
         Home::class,
     ]);
 
@@ -24,30 +23,15 @@ it('can find component for the key', function() {
     ]);
 
 	$this->assertEquals(Blog::class, Cypress::componentForKey(Blog::uriKey())); 
-});  
-
-it('can find the root component', function() { 
-    Cypress::components([
-        Blog::class,
-        Error::class,
-        Home::class,
-    ]);
-
-    $this->assertFalse(Blog::root());
-    $this->assertFalse(Error::root());
-    $this->assertTrue(Home::root());
-	$this->assertEquals(Home::class, Cypress::rootComponent()); 
-});  
+});    
 
 it('can find the fallback component', function() { 
     Cypress::components([
-        Blog::class,
-        Error::class,
+        Blog::class, 
         Home::class,
     ]);
 
-    $this->assertFalse(Blog::fallback());
-    $this->assertFalse(Home::fallback());
-    $this->assertTrue(Error::fallback());
-	$this->assertEquals(Error::class, Cypress::fallbackComponent()); 
+    $this->assertFalse(Blog::fallback()); 
+    $this->assertTrue(Home::fallback());
+	$this->assertEquals(Home::class, Cypress::fallbackComponent()); 
 });   
