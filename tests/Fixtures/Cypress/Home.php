@@ -23,9 +23,7 @@ class Home extends Component implements Resolvable
      */
     public function resolve($request): bool
     {
-        $this->withMeta([
-            'resolveed' => true,
-        ]);
+        event('resolving: home');
         
         return true;
     }
@@ -38,8 +36,8 @@ class Home extends Component implements Resolvable
     public function fragments(): array
     {
         return [
-            // Fragments\Post::class,
-            // Fragments\Category::class,
+            Fragments\Fallback::class,
+            Fragments\Post::class, 
         ];
     }
      
