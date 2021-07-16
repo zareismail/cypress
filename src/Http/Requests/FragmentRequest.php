@@ -5,7 +5,7 @@ namespace Zareismail\Cypress\Http\Requests;
 use Zareismail\Cypress\Contracts\Resolvable;
 use Zareismail\Cypress\Events\FragmentResolved;
 
-class FragmentRequest extends ComponentRequest
+class FragmentRequest extends CypressRequest
 {   
     /**
      * Resolve the fragment instance being requested.
