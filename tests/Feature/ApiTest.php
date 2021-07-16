@@ -19,7 +19,7 @@ it('can access to the component via api', function() {
     Event::fake();
 
     $this
-        ->getJson('/blog')
+        ->getJson(Blog::uriKey())
         ->assertStatus(200)
         ->assertJson([
             'uriKey' => Blog::uriKey(),
@@ -33,7 +33,7 @@ it('can access to the widget through the component via api', function() {
     Event::fake();
 
     $this
-        ->getJson('/blog')
+        ->getJson(Blog::uriKey())
         ->assertStatus(200)
         ->assertDontSee('I`m walking through site.')
         ->assertJson(function($json) {
@@ -50,7 +50,7 @@ it('can access to the plugin through the component via api', function() {
     Event::fake();
 
     $this
-        ->getJson('/blog')
+        ->getJson(Blog::uriKey())
         ->assertStatus(200)
         ->assertDontSee('<script>console.log("tool")</script>', false)
         ->assertJson(function($json) {
@@ -66,7 +66,7 @@ it('can access to the fragment through a component via api', function() {
     Event::fake();
     
     $this
-        ->getJson('/blog/'.Post::uriKey())
+        ->getJson(Blog::uriKey().'/'.Post::uriKey())
         ->assertStatus(200)
         ->assertJson([
             'uriKey' => Post::uriKey(),
@@ -82,7 +82,7 @@ it('can access to the widget through a fragment via api', function() {
     Event::fake();
 
     $this
-        ->getJson('/blog/'.Post::uriKey())
+        ->getJson(Blog::uriKey().'/'.Post::uriKey())
         ->assertStatus(200)
         ->assertDontSee('Hello World!') 
         ->assertJson(function($json) { 
@@ -99,7 +99,7 @@ it('can access to the plugin through a fragment via api', function() {
     Event::fake();
 
     $this
-        ->getJson('/blog/'.Post::uriKey())
+        ->getJson(Blog::uriKey().'/'.Post::uriKey())
         ->assertStatus(200)
         ->assertDontSee('<script>console.log("tool")</script>', false) 
         ->assertJson(function($json) { 
@@ -115,7 +115,7 @@ it('can access to the fallback fragment through a component via api', function()
     Event::fake();
     
     $this
-        ->getJson('/blog/'. md5(time()))
+        ->getJson(Blog::uriKey().'/'. md5(time()))
         ->assertStatus(200)
         ->assertJson([
             'uriKey' => Fallback::uriKey(),
