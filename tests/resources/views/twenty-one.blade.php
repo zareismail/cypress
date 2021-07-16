@@ -35,6 +35,5 @@
     // renders avaialble plugins that should render in the footer
     collect($plugins)->reject->asMetadata()->map->render()->implode('') 
   !!} 
-  @stack('footer-scripts')
 </body>
 </html>
