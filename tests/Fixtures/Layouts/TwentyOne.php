@@ -1,11 +1,11 @@
 <?php
 
-namespace Zareismail\Cypress\Tests\Fixtures\Cypress\Layouts;
+namespace Zareismail\Cypress\Tests\Fixtures\Layouts;
 
 use Illuminate\Http\Request;
 use Zareismail\Cypress\Layout;  
-use Zareismail\Cypress\Tests\Fixtures\Cypress\Widgets\Walker;
-use Zareismail\Cypress\Tests\Fixtures\Cypress\Widgets\Welcome;
+use Zareismail\Cypress\Tests\Fixtures\Widgets\Walker;
+use Zareismail\Cypress\Tests\Fixtures\Widgets\Welcome;
 
 class TwentyOne extends Layout
 {        

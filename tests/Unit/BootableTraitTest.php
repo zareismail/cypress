@@ -3,7 +3,7 @@
 namespace Zareismail\Cypress\Tests\Unit;
 
 use Zareismail\Cypress\Http\Requests\CypressRequest;
-use Zareismail\Cypress\Tests\Fixtures\Cypress\Blog;
+use Zareismail\Cypress\Tests\Fixtures\Blog;
 
 it('can bootstrap an instance', function() {
     $instance = tap(new Bootable, function($instance) {

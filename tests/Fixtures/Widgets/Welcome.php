@@ -1,11 +1,11 @@
 <?php
 
-namespace Zareismail\Cypress\Tests\Fixtures\Cypress\Widgets;
+namespace Zareismail\Cypress\Tests\Fixtures\Widgets;
 
 use Zareismail\Cypress\Widget;  
 use Zareismail\Cypress\Http\Requests\CypressRequest;
 
-class Walker extends Widget
+class Welcome extends Widget
 {       
     /**
      * Bootstrap the resource for the given request.
@@ -15,8 +15,8 @@ class Walker extends Widget
      * @return void                  
      */
     public function boot(CypressRequest $request, $layout)
-    {  
-        event('resolving: walker');
+    {   
+        event('resolving: welcome');
     }
 
     /**
@@ -26,6 +26,6 @@ class Walker extends Widget
      */
     public function render()
     { 
-        return 'I`m walking through site.';
+        return 'Hello World!';
     }
 }

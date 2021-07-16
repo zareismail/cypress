@@ -2,9 +2,9 @@
 
 use Zareismail\Cypress\Cypress;
 use Zareismail\Cypress\Http\Requests\CypressRequest;
-use Zareismail\Cypress\Tests\Fixtures\Cypress\Blog;
-use Zareismail\Cypress\Tests\Fixtures\Cypress\Error;
-use Zareismail\Cypress\Tests\Fixtures\Cypress\Home;
+use Zareismail\Cypress\Tests\Fixtures\Blog;
+use Zareismail\Cypress\Tests\Fixtures\Error;
+use Zareismail\Cypress\Tests\Fixtures\Home;
 
 it('can get version')->assertTrue((bool) preg_match_all('/^1\.\d+\.\d+/s', Cypress::version()));
 

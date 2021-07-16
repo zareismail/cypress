@@ -27,8 +27,8 @@ class ServiceProvider extends LaravelServiceProvider
     protected function registerCypressComponents()
     { 
         Cypress::components([
-            Fixtures\Cypress\Blog::class, 
-            Fixtures\Cypress\Home::class,
+            Fixtures\Blog::class, 
+            Fixtures\Home::class,
         ]);
     }
 }

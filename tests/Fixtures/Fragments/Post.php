@@ -1,13 +1,13 @@
 <?php
 
-namespace Zareismail\Cypress\Tests\Fixtures\Cypress\Fragments;
+namespace Zareismail\Cypress\Tests\Fixtures\Fragments;
 
 use Illuminate\Support\Str;
 use Zareismail\Cypress\Fragment; 
 use Zareismail\Cypress\Contracts\Resolvable;
 use Zareismail\Cypress\Http\Requests\CypressRequest; 
 
-class Fallback extends Fragment implements Resolvable
+class Post extends Fragment implements Resolvable
 {      
     /**
      * Resolve the resoruce's value for the given request.
@@ -17,18 +17,8 @@ class Fallback extends Fragment implements Resolvable
      */
     public function resolve($request): bool
     {     
-        event('resolving: fallback');
+        event('resolving: posts');
 
         return true;
     } 
-     
-    /**
-     * Determine if the fragment is the fallback.
-     *
-     * @return boolean
-     */
-    public static function fallback(): bool
-    { 
-        return true;
-    }
 }

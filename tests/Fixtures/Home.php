@@ -1,12 +1,12 @@
 <?php
 
-namespace Zareismail\Cypress\Tests\Fixtures\Cypress;
+namespace Zareismail\Cypress\Tests\Fixtures;
 
 use Zareismail\Cypress\Component; 
 use Zareismail\Cypress\Contracts\Resolvable;
 use Zareismail\Cypress\Http\Requests\CypressRequest;
 
-class Blog extends Component implements Resolvable
+class Home extends Component implements Resolvable
 {    
     /**
      * The display layout class name.
@@ -23,7 +23,7 @@ class Blog extends Component implements Resolvable
      */
     public function resolve($request): bool
     {
-        event('resolving: blog');
+        event('resolving: home');
         
         return true;
     }
@@ -39,5 +39,15 @@ class Blog extends Component implements Resolvable
             Fragments\Fallback::class,
             Fragments\Post::class, 
         ];
+    }
+     
+    /**
+     * Determine if the component is a fallback component.
+     *
+     * @return boolean
+     */
+    public static function fallback(): bool
+    { 
+        return true;
     }
 }
