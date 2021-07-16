@@ -2,9 +2,7 @@
 
 namespace Zareismail\Cypress\Tests\Feature;
 
-use Illuminate\Support\Facades\Event;
-use Zareismail\Cypress\Tests\Fixtures\Blog;  
-
+use Illuminate\Support\Facades\Event; 
 uses(\Zareismail\Cypress\Tests\TestCase::class);   
  
 it('can visit the component', function() { 
