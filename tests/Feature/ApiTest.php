@@ -8,6 +8,8 @@ use Zareismail\Cypress\Tests\Fixtures\Blog;
 use Zareismail\Cypress\Tests\Fixtures\Fragments\Fallback;
 use Zareismail\Cypress\Tests\Fixtures\Fragments\Post;
 use Zareismail\Cypress\Tests\Fixtures\Home; 
+use Zareismail\Cypress\Tests\Fixtures\Plugins\App;
+use Zareismail\Cypress\Tests\Fixtures\Plugins\Tool;
 use Zareismail\Cypress\Tests\Fixtures\Widgets\Walker;
 use Zareismail\Cypress\Tests\Fixtures\Widgets\Welcome;
 
@@ -44,6 +46,22 @@ it('can access to the widget through the component via api', function() {
     Event::assertNotDispatched('resolving: walker', 1);  
 }); 
  
+it('can access to the plugin through the component via api', function() { 
+    Event::fake();
+
+    $this
+        ->getJson('/blog')
+        ->assertStatus(200)
+        ->assertDontSee('<script>console.log("tool")</script>', false)
+        ->assertJson(function($json) {
+            return $json->where('layout.plugins.0.uriKey', App::uriKey()) 
+                        ->etc();
+        });
+
+    Event::assertDispatched('resolving: app', 1);  
+    Event::assertNotDispatched('resolving: tool', 1);  
+}); 
+ 
 it('can access to the fragment through a component via api', function() { 
     Event::fake();
     
@@ -75,6 +93,22 @@ it('can access to the widget through a fragment via api', function() {
 
     Event::assertDispatched('resolving: walker', 1);  
     Event::assertNotDispatched('resolving: welcome');  
+});
+ 
+it('can access to the plugin through a fragment via api', function() { 
+    Event::fake();
+
+    $this
+        ->getJson('/blog/'.Post::uriKey())
+        ->assertStatus(200)
+        ->assertDontSee('<script>console.log("tool")</script>', false) 
+        ->assertJson(function($json) { 
+            return $json->where('layout.plugins.0.uriKey', Tool::uriKey()) 
+                        ->etc();
+        });
+
+    Event::assertDispatched('resolving: tool', 1);  
+    Event::assertNotDispatched('resolving: app');  
 });
  
 it('can access to the fallback fragment through a component via api', function() { 

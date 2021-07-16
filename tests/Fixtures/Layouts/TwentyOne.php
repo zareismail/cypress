@@ -4,6 +4,8 @@ namespace Zareismail\Cypress\Tests\Fixtures\Layouts;
 
 use Illuminate\Http\Request;
 use Zareismail\Cypress\Layout;  
+use Zareismail\Cypress\Tests\Fixtures\Plugins\App;
+use Zareismail\Cypress\Tests\Fixtures\Plugins\Tool;
 use Zareismail\Cypress\Tests\Fixtures\Widgets\Walker;
 use Zareismail\Cypress\Tests\Fixtures\Widgets\Welcome;
 
@@ -47,6 +49,13 @@ class TwentyOne extends Layout
     public function plugins(Request $request)
     {
         return [
+            App::make()->canSee(function($request) {
+                return $request->isComponentRequest();
+            }), 
+
+            Tool::make()->canSee(function($request) {
+                return $request->isFragmentRequest();
+            }),
         ];
     } 
 }

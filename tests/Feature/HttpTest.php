@@ -28,6 +28,19 @@ it('can visit the widget through the component', function() {
 
     Event::assertDispatched('resolving: welcome', 1);  
     Event::assertNotDispatched('resolving: walker', 1);  
+});
+ 
+it('can visit the plugin through the component', function() { 
+    Event::fake();
+
+    $this
+        ->get(Blog::uriKey())
+        ->assertStatus(200)
+        ->assertDontSee('<script>console.log("tool")</script>', false)
+        ->assertSee('<script>console.log("app")</script>', false);
+
+    Event::assertDispatched('resolving: app', 1);  
+    Event::assertNotDispatched('resolving: tool', 1);  
 }); 
  
 it('can visit the fragment through a component', function() { 
@@ -51,6 +64,19 @@ it('can visit the widget through a fragment', function() {
 
     Event::assertDispatched('resolving: walker', 1);  
     Event::assertNotDispatched('resolving: welcome');  
+});
+ 
+it('can visit the plugin through a fragment', function() { 
+    Event::fake();
+
+    $this
+        ->get(Blog::uriKey().'/'.Post::uriKey())
+        ->assertStatus(200)
+        ->assertDontSee('<script>console.log("app")</script>', false)
+        ->assertSee('<script>console.log("tool")</script>', false);
+
+    Event::assertDispatched('resolving: tool', 1);  
+    Event::assertNotDispatched('resolving: app');  
 });
  
 it('can visit the fallback fragment through a component', function() { 
