@@ -16,6 +16,18 @@ it('can visit the component', function() {
     Event::assertNotDispatched('resolving: home');
 }); 
  
+it('can visit the widget through the component', function() { 
+    Event::fake();
+
+    $this->get('/blog')
+        ->assertStatus(200)
+        ->assertDontSee('I`m walking through site.')
+        ->assertSee('Hello World!');
+
+    Event::assertDispatched('resolving: welcome', 1);  
+    Event::assertNotDispatched('resolving: walker', 1);  
+}); 
+ 
 it('can visit the fragment through a component', function() { 
     Event::fake();
     
@@ -24,7 +36,19 @@ it('can visit the fragment through a component', function() {
     Event::assertDispatched('resolving: blog', 1);
     Event::assertDispatched('resolving: posts', 1);
     Event::assertNotDispatched('resolving: home');
-}); 
+});  
+ 
+it('can visit the widget through a fragment', function() { 
+    Event::fake();
+
+    $this->get('/blog/posts')
+        ->assertStatus(200)
+        ->assertDontSee('Hello World!')
+        ->assertSee('I`m walking through site.');
+
+    Event::assertDispatched('resolving: walker', 1);  
+    Event::assertNotDispatched('resolving: welcome');  
+});
  
 it('can visit the fallback fragment through a component', function() { 
     Event::fake();

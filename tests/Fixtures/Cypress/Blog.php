@@ -13,7 +13,7 @@ class Blog extends Component implements Resolvable
      * 
      * @var string
      */ 
-    // public $layout = Layouts\TwentyOne::class;
+    public $layout = Layouts\TwentyOne::class;
     
     /**
      * Resolve the resoruce's value for the given request.
