@@ -16,7 +16,7 @@ trait ResolvesPlugins
      */
     public function availablePlugins(CypressRequest $request)
     {
-        return $this->resolvePlugins($request)->filter->authorizedToSee($request)->filter(); 
+        return $this->resolvePlugins($request)->filter->authorizedToSee($request)->values(); 
     }
 
     /**
