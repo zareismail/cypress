@@ -11,5 +11,5 @@ jobs:
     - uses: actions/checkout@v2 
     - uses: php-actions/composer@v6
     - name: Execute tests (Unit and Feature tests) via PHPUnit 
-      run: composer u
-      run: ./vendor/bin/pest
+    - run: composer u
+    - run: ./vendor/bin/pest
