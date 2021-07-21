@@ -9,8 +9,6 @@ jobs:
 
     steps: 
     - uses: actions/checkout@v2 
-    - uses: php-actions/composer@v6
-      with: 
-        command: composer u
+    - uses: php-actions/composer@v6 
     - name: Execute tests (Unit and Feature tests) via PHPUnit  
       run: ./vendor/bin/pest
