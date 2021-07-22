@@ -9,6 +9,6 @@ jobs:
     - uses: actions/checkout@v2 
     - uses: php-actions/composer@v6 
       with:
-        command: 'composer require laravel/framework:8.*'
+        command: 'require laravel/framework:8.*'
     - name: Execute tests (Unit and Feature tests) via Pest  
       run: ./vendor/bin/pest
