@@ -4,11 +4,11 @@ on: ['push', 'pull_request']
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
-
     steps: 
     - uses: actions/checkout@v2 
     - uses: php-actions/composer@v6 
-    - name: Execute tests (Unit and Feature tests) via PHPUnit  
+      with:
+        uses: 'composer require laravel/framework:8.*'
+    - name: Execute tests (Unit and Feature tests) via Pest  
       run: ./vendor/bin/pest
