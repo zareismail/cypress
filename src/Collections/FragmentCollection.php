@@ -33,7 +33,7 @@ class FragmentCollection extends Collection
             
             return Str::startsWith(trim($key, '/'), $uriKey);
         }, function() {
-            return $this->fallback()->first();
+            return $this->fallback();
         });
     }
 
@@ -44,7 +44,7 @@ class FragmentCollection extends Collection
      */
     public function fallback()
     { 
-        return $this->filter(function($fragment) {  
+        return $this->first(function($fragment) {  
             return $fragment::fallback();
         });
     } 
