@@ -8,21 +8,21 @@ use Zareismail\Cypress\Tests\Fixtures\Blog;
 use Zareismail\Cypress\Tests\Fixtures\Home;
 
 it('can find component by uriKey', function() {
-	$widgets = ComponentCollection::make([
+	$components = ComponentCollection::make([
 		Blog::class,
 		Home::class,
 	]); 
  
-    $this->assertCount(2, $widgets);
-    $this->assertEquals(Blog::class, $widgets->find(Blog::uriKey()));
+    $this->assertCount(2, $components);
+    $this->assertEquals(Blog::class, $components->find(Blog::uriKey()));
 });  
 
 it('can find the fallback component', function() {
-	$widgets = ComponentCollection::make([
+	$components = ComponentCollection::make([
 		Blog::class,
 		Home::class,
 	]); 
  
-    $this->assertCount(2, $widgets);
-    $this->assertEquals(Home::class, $widgets->fallback());
+    $this->assertCount(2, $components);
+    $this->assertEquals(Home::class, $components->fallback());
 });  
