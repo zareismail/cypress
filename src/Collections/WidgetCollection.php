@@ -2,12 +2,14 @@
 
 namespace Zareismail\Cypress\Collections;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Stringable;
 use Zareismail\Cypress\Http\Requests\CypressRequest;
 
-class WidgetCollection extends Collection
+class WidgetCollection extends Collection implements Renderable
 { 
     /**
      * Find a widget in the collection by key.
@@ -65,5 +67,15 @@ class WidgetCollection extends Collection
     public function authorized(Request $request)
     {
         return $this->filter->authorizedToSee($request)->values();
+    }
+
+    /**
+     * Get the evaluated contents of the object.
+     *
+     * @return string
+     */
+    public function render()
+    {
+        return $this->mapInto(Stringable::class)->implode('');
     }
 }
