@@ -2,6 +2,7 @@
 
 namespace Zareismail\Cypress;
  
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Str;
 use Zareismail\Cypress\Http\Requests\CypressRequest;
@@ -178,4 +179,24 @@ abstract class Widget extends Resource implements Renderable
             'name'    => $this->name, 
         ]);
     }   
+
+    /**
+     * Get content as a string of HTML.
+     *
+     * @return string
+     */
+    public function __toString() 
+    {
+        $content = $this->render();
+
+        if ($content instanceof Renderable) {
+            $content = $content->render();
+        }
+
+        if ($content instanceof Htmlable) {
+            $content = $content->toHtml();
+        }
+
+        return strval($content);
+    }
 }
