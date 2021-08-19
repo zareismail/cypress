@@ -131,8 +131,6 @@ class Cypress
      */
     public static function fallbackComponent()
     {
-        return static::componentCollection()->first(function($component) {
-            return $component::fallback();
-        });
+        return static::componentCollection()->fallback();
     }
 }
