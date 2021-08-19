@@ -20,4 +20,16 @@ class ComponentCollection extends Collection
         }, $default);
     }
 
+    /**
+     * Find first fallback component in the collection.
+     * 
+     * @return \Zareismail\Cypress\Fragment|null
+     */
+    public function fallback()
+    {
+        return $this->first(function($component) {
+            return $component::fallback();
+        });
+    }
+
 }
