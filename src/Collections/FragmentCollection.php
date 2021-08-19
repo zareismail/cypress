@@ -30,8 +30,9 @@ class FragmentCollection extends Collection
     { 
         return $this->first(function($fragment) use ($key) {  
             $uriKey = trim($fragment::uriKey(), '/');
-            
-            return Str::startsWith(trim($key, '/'), $uriKey);
+            $key = trim($key, '/'); 
+
+            return $key === $uriKey || Str::startsWith($key, $uriKey.'/');
         }, function() {
             return $this->fallback();
         });
