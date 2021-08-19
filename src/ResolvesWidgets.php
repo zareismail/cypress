@@ -7,27 +7,63 @@ use Zareismail\Cypress\Http\Requests\CypressRequest;
 use Zareismail\Cypress\Collections\WidgetCollection;
 
 trait ResolvesWidgets
-{
+{ 
+    /**
+     * Bootstrap component widgets.
+     *
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest  $request
+     * @return \Zareismail\Cypress\Collections\WidgetCollection
+     */
+    public function componentWidgets(CypressRequest $request)
+    {
+        return $this->availableWidgets($request)
+                    ->filterForComponent($request)
+                    ->bootstrap($request, $this);
+    }
+
+    /**
+     * Bootstrap fragment widgets.
+     *
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest  $request
+     * @return \Zareismail\Cypress\Collections\WidgetCollection
+     */
+    public function fragmentWidgets(CypressRequest $request)
+    {
+        return $this->availableWidgets($request)
+                    ->filterForFragment($request)
+                    ->bootstrap($request, $this);
+    }
+
     /**
      * Get the widgets that are available for the given request.
      *
      * @param  \Zareismail\Cypress\Http\Requests\CypressRequest  $request
-     * @return \Illuminate\Support\Collection
+     * @return \Zareismail\Cypress\Collections\WidgetCollection
      */
     public function availableWidgets(CypressRequest $request)
     {
-        return $this->resolveWidgets($request)->filter->authorizedToSee($request)->values();
+        $method = $this->widgetsMethod($request);
+
+        return WidgetCollection::make($this->{$method}($request));
     }
 
     /**
-     * Get the widgets for the given request.
+     * Compute the method to use to get the available widgets.
      *
      * @param  \Zareismail\Cypress\Http\Requests\CypressRequest  $request
-     * @return \Illuminate\Support\Collection
+     * @return string
      */
-    public function resolveWidgets(CypressRequest $request)
+    protected function widgetsMethod(CypressRequest $request)
     {
-        return new WidgetCollection($this->widgets($request));
+        if ($request->isComponentRequest() && method_exists($this, 'widgetsForComponent')) {
+            return 'widgetsForComponent';
+        }
+
+        if ($request->isFragmentRequest() && method_exists($this, 'widgetsForFragment')) {
+            return 'widgetsForFragment';
+        } 
+
+        return 'widgets';
     }
 
     /**
