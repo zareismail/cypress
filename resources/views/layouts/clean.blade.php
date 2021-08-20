@@ -13,8 +13,8 @@
   >
 
   {!! 
-    // renders avaialble plugins that should renders in the header
-    collect($plugins)->filter->asMetadata()->map->render()->implode('') 
+    // renders avaialble plugins that should renders in the HTML head
+    $plugins->filterForHead() 
   !!}  
 </head>
 <body 
@@ -36,8 +36,8 @@
     crossorigin="anonymous"
   ></script>
   {!! 
-    // renders avaialble plugins that should render in the footer
-    collect($plugins)->reject->asMetadata()->map->render()->implode('') 
+    // renders avaialble plugins that should render in the HTML body
+    $plugins->filterForBody() 
   !!} 
 </body>
 </html>

@@ -14,7 +14,7 @@
 
   {!! 
     // renders avaialble plugins that should renders in the header
-    collect($plugins)->filter->asMetadata()->map->render()->implode('') 
+    $plugins->filterForHead()->toHtml() 
   !!}  
 </head>
 <body 
@@ -37,7 +37,7 @@
   ></script>
   {!! 
     // renders avaialble plugins that should render in the footer
-    collect($plugins)->reject->asMetadata()->map->render()->implode('') 
+    $plugins->filterForBody()->toHtml() 
   !!} 
 </body>
 </html>
