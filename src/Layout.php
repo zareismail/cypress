@@ -61,7 +61,7 @@ abstract class Layout extends Resource implements Htmlable
     public function bootstrapPlugins(CypressRequest $request)
     {
         return $this->withMeta([ 
-            'plugins' => $this->availablePlugins($request)->each->bootIfNotBooted($request, $this),
+            'plugins' => $this->availablePlugins($request)->bootstrap($request, $this),
         ]);
 
         return $this;
