@@ -14,7 +14,7 @@
 
   {!! 
     // renders avaialble plugins that should renders in the HTML head
-    $plugins->filterForHead() 
+    $plugins->filterForHead()->toHtml()  
   !!}  
 </head>
 <body 
@@ -37,7 +37,7 @@
   ></script>
   {!! 
     // renders avaialble plugins that should render in the HTML body
-    $plugins->filterForBody() 
+    $plugins->filterForBody()->toHtml()  
   !!} 
 </body>
 </html>
