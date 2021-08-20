@@ -10,11 +10,10 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
     crossorigin="anonymous"
-  >
-
+  > 
   {!! 
-    // renders avaialble plugins that should renders in the header
-    collect($plugins)->filter->asMetadata()->map->render()->implode('') 
+    // renders avaialble plugins that should renders in the HTML head
+    $plugins->filterForHead()->toHtml()  
   !!}  
 </head>
 <body 
@@ -23,7 +22,7 @@
 > 
   {!! 
     // renders avaialble widgets
-    $widgets 
+    $widgets->toHtml()
   !!} 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script 
@@ -32,8 +31,8 @@
     crossorigin="anonymous"
   ></script>
   {!! 
-    // renders avaialble plugins that should render in the footer
-    collect($plugins)->reject->asMetadata()->map->render()->implode('') 
+    // renders avaialble plugins that should render in the HTML body
+    $plugins->filterForBody()->toHtml() 
   !!} 
 </body>
 </html>
