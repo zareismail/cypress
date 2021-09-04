@@ -53,6 +53,7 @@ class Cypress
      */
     public static function boot()
     {   
+        Cypress::discover(app_path('Cypress'));
         static::routes(); 
     }
 
@@ -156,6 +157,10 @@ class Cypress
      */
     public static function discover(string $directory, string $namespace = null)
     {
+        if (! is_dir($directory)) {
+            return;
+        }
+        
         $namespace = $namespace ?? app()->getNamespace();
 
         $components = [];
