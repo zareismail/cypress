@@ -24,11 +24,13 @@ class PendingRouteRegistration
     {
         $this->registered = true; 
 
-        if (app()->runningInConsole()) {
-            app()->booted([$this, 'registerRoutes']);
-        } else {
-            Event::listen(CypressServiceProviderRegistered::class, [$this, 'registerRoutes']);
-        } 
+        app()->booted(function() {
+            if (app()->runningInConsole()) {
+                $this->registerRoutes();
+            } else {
+                Event::listen(CypressServiceProviderRegistered::class, [$this, 'registerRoutes']);
+            }  
+        });
     }
 
     public function registerRoutes()
