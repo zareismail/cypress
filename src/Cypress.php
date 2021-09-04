@@ -3,6 +3,9 @@
 namespace Zareismail\Cypress; 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
+use ReflectionClass;
+use Symfony\Component\Finder\Finder;
 
 class Cypress
 {   
@@ -41,6 +44,16 @@ class Cypress
     public static function host()
     {
         return config('cypress.host');
+    }
+
+    /**
+     * Bootstrap Cypress application.
+     * 
+     * @return void
+     */
+    public static function boot()
+    {   
+        static::routes(); 
     }
 
     /**
@@ -132,5 +145,35 @@ class Cypress
     public static function fallbackComponent()
     {
         return static::componentCollection()->fallback();
+    }
+
+    /**
+     * Register all of the component classes in the given directory.
+     *
+     * @param  string  $directory
+     * @param  string  $namespace
+     * @return void
+     */
+    public static function discover(string $directory, string $namespace = null)
+    {
+        $namespace = $namespace ?? app()->getNamespace();
+
+        $components = [];
+
+        foreach ((new Finder)->in($directory)->files() as $component) {
+            $component = $namespace.str_replace(
+                ['/', '.php'],
+                ['\\', ''],
+                Str::after($component->getPathname(), app_path().DIRECTORY_SEPARATOR)
+            );
+
+            if (is_subclass_of($component, Component::class) && ! (new ReflectionClass($component))->isAbstract()) {
+                $components[] = $component;
+            }
+        }
+
+        static::components(
+            collect($components)->sort()->all()
+        );
     }
 }

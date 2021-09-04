@@ -16,22 +16,12 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function boot()
     { 
-        $this->routes(); 
+        Cypress::boot();
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cypress');
 
         $this->app->make(HttpKernel::class)
                     ->pushMiddleware(ServeCypress::class);
-    }
-
-    /**
-     * Register the tool's routes.
-     *
-     * @return void
-     */
-    protected function routes()
-    {
-        $this->app->routesAreCached() || Cypress::routes(); 
-    }
+    } 
 
     /**
      * Register any application services.
