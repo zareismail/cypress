@@ -34,7 +34,11 @@ class PendingRouteRegistration
     }
 
     public function registerRoutes()
-    {
+    { 
+        if (app()->routesAreCached()) {
+            return;
+        }
+
         Route::namespace('Zareismail\Cypress\Http\Controllers')
             ->middleware(config('cypress.middleware', []))
             ->group(function($router) {
