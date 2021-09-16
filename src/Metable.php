@@ -45,4 +45,15 @@ trait Metable
 
         return $this;
     }
+
+    /**
+     * Determine if meta information is set.
+     *
+     * @param  string  $key
+     * @return $this
+     */
+    public function hasMeta(string $key)
+    { 
+        return array_key_exists($key, $this->meta);
+    }
 }
