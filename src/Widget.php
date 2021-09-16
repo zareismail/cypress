@@ -12,6 +12,7 @@ abstract class Widget extends Resource implements Renderable
 {   
     use AuthorizedToSee;
     use Bootable;
+    use Conditionable;
     use Makeable;
 
     /**
