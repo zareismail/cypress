@@ -3,8 +3,10 @@
 namespace Zareismail\Cypress;
  
 use Illuminate\Contracts\Support\Htmlable;
+use Zareismail\Cypress\Collections\PluginCollection;
 use Zareismail\Cypress\Http\Requests\CypressRequest;
-use Zareismail\Cypress\Events\{LayoutBooted, RenderingLayout};
+use Zareismail\Cypress\Events\LayoutBooted;
+use Zareismail\Cypress\Events\RenderingLayout;
 
 abstract class Layout extends Resource implements Htmlable
 {      
@@ -60,11 +62,33 @@ abstract class Layout extends Resource implements Htmlable
      */
     public function bootstrapPlugins(CypressRequest $request)
     {
-        return $this->withMeta([ 
-            'plugins' => $this->availablePlugins($request)->bootstrap($request, $this),
-        ]);
+        return $this->appendPlugins($this->availablePlugins($request)->bootstrap($request, $this)->all());
+    }
 
-        return $this;
+    /**
+     * Append given plugins into layout plugins.
+     * 
+     * @param  array  $plugins 
+     * @return $this          
+     */
+    public function appendPlugins(array $plugins)
+    {  
+        return $this->withMeta([ 
+            'plugins' => PluginCollection::make($this->metaValue('plugins', []))->merge($plugins),
+        ]); 
+    }   
+
+    /**
+     * Prepend given plugins into layout plugins.
+     * 
+     * @param  array  $plugins 
+     * @return $this          
+     */
+    public function prependPlugins(array $plugins)
+    {  
+        return $this->withMeta([ 
+            'plugins' => PluginCollection::make($plugins)->merge($this->metaValue('plugins', [])),
+        ]); 
     }     
 
     /**
