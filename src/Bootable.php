@@ -30,13 +30,14 @@ trait Bootable
     public function bootIfNotBooted(CypressRequest $request, $resource)
     {   
         if (! $this->booted()) {
-            $this->booted = true; 
 
             $this->setRequest($request);
 
             $this->boot($request, $resource); 
 
             $this->dispatchBootingEvent($request);
+            
+            $this->booted = true; 
         }
     } 
 
