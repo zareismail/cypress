@@ -68,6 +68,17 @@ class WidgetCollection extends Collection implements Htmlable
     {
         return $this->filter->authorizedToSee($request)->values();
     }
+
+    /**
+     * Filter widgets that can be rendered for the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Zareismail\Cypress\Collections\WidgetCollection
+     */
+    public function renderable(Request $request)
+    {
+        return $this->filter->isRenderable($request)->values();
+    }
     
     /**
      * Get content as a string of HTML.

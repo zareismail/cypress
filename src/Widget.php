@@ -22,6 +22,13 @@ abstract class Widget extends Resource implements Renderable
     public $name;
 
     /**
+     * Indicates if the widget is ready to rendering.
+     *
+     * @var \Closure|bool
+     */
+    public $renderable = true;
+
+    /**
      * Indicates if the widget should be shown on the component page.
      *
      * @var \Closure|bool
@@ -44,6 +51,22 @@ abstract class Widget extends Resource implements Renderable
     public function __construct(string $name)
     {
         $this->name = Str::slug($name);
+    }
+
+    /**
+     * Specify that the element is ready to rendering.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function renderable($callback = true)
+    {
+        $this->renderable = is_callable($callback) ? function () use ($callback) {
+            return call_user_func_array($callback, func_get_args());
+        }
+        : $callback;
+
+        return $this;
     }
 
     /**
@@ -126,6 +149,21 @@ abstract class Widget extends Resource implements Renderable
         return tap($this->showOnFragment($callback), function() { 
             $this->hideFromComponent();
         }); 
+    }
+
+    /**
+     * Check if renderable.
+     *
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest  $request 
+     * @return bool
+     */
+    public function isRenderable(CypressRequest $request): bool
+    {
+        if (! is_callable($this->renderable)) {
+            return $this->renderable;
+        }
+
+        return call_user_func($this->renderable, $request);
     }
 
     /**

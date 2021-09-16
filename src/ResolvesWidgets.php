@@ -18,7 +18,8 @@ trait ResolvesWidgets
     {
         return $this->availableWidgets($request)
                     ->filterForComponent($request)
-                    ->bootstrap($request, $this);
+                    ->bootstrap($request, $this)
+                    ->renderable($request);
     }
 
     /**
@@ -31,7 +32,8 @@ trait ResolvesWidgets
     {
         return $this->availableWidgets($request)
                     ->filterForFragment($request)
-                    ->bootstrap($request, $this);
+                    ->bootstrap($request, $this)
+                    ->renderable($request);
     }
 
     /**
