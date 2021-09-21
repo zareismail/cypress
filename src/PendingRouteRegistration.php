@@ -40,7 +40,7 @@ class PendingRouteRegistration
         }
 
         Route::namespace('Zareismail\Cypress\Http\Controllers')
-            ->middleware(config('cypress.middleware', []))
+            ->middleware(config('cypress.middleware', ['web']))
             ->group(function($router) {
                 $this->mapWebRoutes(); 
             }); 
