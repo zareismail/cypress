@@ -56,7 +56,7 @@ class PendingRouteRegistration
      */
     public function mapWebRoutes()
     { 
-        Cypress::componentCollection()->each(function($component) {
+        $this->sortedComponents()->each(function($component) {
             Route::prefix($component::fallback() ? '/' : $component::uriKey())
                 ->middleware($component::middlewares())
                 ->group(function($router) use ($component) {
@@ -72,6 +72,18 @@ class PendingRouteRegistration
                 });
         });
     } 
+
+    /**
+     * Get components sorted by fallback indicates.
+     * 
+     * @return \Illuminate\Support\Collection
+     */
+    public function sortedComponents()
+    {
+        return Cypress::componentCollection()->sort(function($component) {
+            return intval($component::fallback());
+        });
+    }
 
     /**
      * Handle the object's destruction and register the router route.
