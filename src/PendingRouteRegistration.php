@@ -33,6 +33,11 @@ class PendingRouteRegistration
         });
     }
 
+    /**
+     * Register the Cypress routes if not cached.
+     *
+     * @return void
+     */
     public function registerRoutes()
     { 
         if (app()->routesAreCached()) {
