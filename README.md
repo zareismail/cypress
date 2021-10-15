@@ -22,13 +22,13 @@ and install the Cypress: `composer require zareismail/cypress`
 
 
 # Components
-[Defining component](#defining-component)
-[Registering Components](#registering-components)
-[Fallback Component](#fallback-component)
-[Customizing Uri](#customizing-uri)
-[Attach Middleware](#attach-middleware)
-[Authorization](#authorization)
-[Resolvable Components](#resolving-component)
+###### [Defining component](#defining-component)
+###### [Registering Components](#registering-components)
+###### [Fallback Component](#fallback-component)
+###### [Customizing Uri](#customizing-uri)
+###### [Attach Middleware](#attach-middleware)
+###### [Authorization](#authorization)
+###### [Resolvable Components](#resolving-component)
 
 
 #### Defining component
@@ -262,9 +262,9 @@ Each fragment that implements the `Zareismail\Cypress\Contracts\Resolvable` inte
 ```
 
 # Layouts
-[Defining Layouts](#defining-layouts) 
-[Registering Layouts](#registering-layouts)
-[Layout View](#layout-view)
+###### [Defining Layouts](#defining-layouts) 
+###### [Registering Layouts](#registering-layouts)
+###### [Layout View](#layout-view)
 
 #### Defining Layouts
 Cypress `layout` is a way to fill the page for the [components](#components) and [fragments](#fragments). following command create a new layout in `app/Cypress/Layouts` directory of your application.
