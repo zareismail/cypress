@@ -43,6 +43,7 @@ abstract class Component extends Resource
      * @return string
      */
     abstract public function fragments(): array;  
+    
     /**
      * Get the component fragments.
      *
