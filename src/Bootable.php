@@ -33,12 +33,14 @@ trait Bootable
 
             $this->setRequest($request);
 
-            $this->boot($request, $resource); 
-
             $this->dispatchBootingEvent($request);
+
+            $this->boot($request, $resource); 
             
             $this->booted = true; 
         }
+
+        $this->dispatchBootedEvent($request);
     } 
 
     /**
@@ -48,6 +50,17 @@ trait Bootable
      * @return \Zareismail\Cypress\Events\WidgetBooted                  
      */
     public function dispatchBootingEvent(CypressRequest $request)
+    {
+
+    } 
+
+    /**
+     * Dispatch the booted event.
+     * 
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest $request 
+     * @return \Zareismail\Cypress\Events\WidgetBooted                  
+     */
+    public function dispatchBootedEvent(CypressRequest $request)
     {
 
     } 

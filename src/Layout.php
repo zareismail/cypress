@@ -4,9 +4,10 @@ namespace Zareismail\Cypress;
  
 use Illuminate\Contracts\Support\Htmlable;
 use Zareismail\Cypress\Collections\PluginCollection;
-use Zareismail\Cypress\Http\Requests\CypressRequest;
+use Zareismail\Cypress\Events\BootstrapingLayout;
 use Zareismail\Cypress\Events\LayoutBooted;
 use Zareismail\Cypress\Events\RenderingLayout;
+use Zareismail\Cypress\Http\Requests\CypressRequest;
 
 abstract class Layout extends Resource implements Htmlable
 {      
@@ -32,9 +33,20 @@ abstract class Layout extends Resource implements Htmlable
      * Dispatch the booting event.
      * 
      * @param  \Zareismail\Cypress\Http\Requests\CypressRequest $request 
-     * @return \Zareismail\Cypress\Events\WidgetBooted                  
+     * @return \Zareismail\Cypress\Events\BootstrapingLayout                  
      */
     public function dispatchBootingEvent(CypressRequest $request)
+    {
+        return BootstrapingLayout::dispatch($request, $this);
+    }
+
+    /**
+     * Dispatch the booted event.
+     * 
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest $request 
+     * @return \Zareismail\Cypress\Events\LayoutBooted                  
+     */
+    public function dispatchBootedEvent(CypressRequest $request)
     {
         return LayoutBooted::dispatch($request, $this);
     }
@@ -62,7 +74,11 @@ abstract class Layout extends Resource implements Htmlable
      */
     public function bootstrapPlugins(CypressRequest $request)
     {
-        return $this->appendPlugins($this->availablePlugins($request)->bootstrap($request, $this)->all());
+        $this->appendPlugins($this->availablePlugins($request)->all());
+
+        collect($this->metaValue('plugins'))->each->bootIfNotBooted($request, $this);
+
+        return $this;
     }
 
     /**

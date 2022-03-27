@@ -5,8 +5,9 @@ namespace Zareismail\Cypress;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Str;
-use Zareismail\Cypress\Http\Requests\CypressRequest;
+use Zareismail\Cypress\Events\BootstrapingWidget;
 use Zareismail\Cypress\Events\WidgetBooted;
+use Zareismail\Cypress\Http\Requests\CypressRequest;
 
 abstract class Widget extends Resource implements Renderable
 {   
@@ -200,9 +201,20 @@ abstract class Widget extends Resource implements Renderable
      * Dispatch the booting event.
      * 
      * @param  \Zareismail\Cypress\Http\Requests\CypressRequest $request 
-     * @return \Zareismail\Cypress\Events\WidgetBooted                  
+     * @return \Zareismail\Cypress\Events\BootstrapingWidget                  
      */
     public function dispatchBootingEvent(CypressRequest $request)
+    { 
+        return BootstrapingWidget::dispatch($request, $this);
+    } 
+
+    /**
+     * Dispatch the booted event.
+     * 
+     * @param  \Zareismail\Cypress\Http\Requests\CypressRequest $request 
+     * @return \Zareismail\Cypress\Events\WidgetBooted                  
+     */
+    public function dispatchBootedEvent(CypressRequest $request)
     {
         return WidgetBooted::dispatch($request, $this);
     }
