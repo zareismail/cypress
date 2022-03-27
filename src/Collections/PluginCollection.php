@@ -47,6 +47,6 @@ class PluginCollection extends Collection implements Htmlable
      */
     public function toHtml()
     { 
-        return $this->mapInto(Stringable::class)->implode('');
+        return $this->mapInto(Stringable::class)->unique()->implode('');
     }
 }
