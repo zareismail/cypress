@@ -7,18 +7,9 @@
 
 
 # Installation
-To install Cypress, install a new laravel project then insert the following code in root `composer.json` (follow the [composer](https://getcomposer.org/doc/05-repositories.md#vcs) tutorial):
+Use the following command to install Cypress:
 
-```
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/zareismail/cypress"
-        }
-    ]
-```
-
-and install the Cypress: `composer require zareismail/cypress`
+`composer require zareismail/cypress`
 
 
 # Components
