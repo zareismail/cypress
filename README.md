@@ -46,7 +46,7 @@ To register your component do it in the boot of a service provider; ike below:
         ]);
     }
 ```
-Once your components are registered with Cypress, you can browse to the `/blob` path to see the result. it will be a blank page. don't worry  it will be filled via [Layout](#layouts), later. 
+Once your components are registered with Cypress, you can browse to the `/blog` path to see the result. it will be a blank page. don't worry  it will be filled via [Layout](#layouts), later. 
 
 #### Fallback Component
 The `fallback` allows you to define a component that will be executed when no other component matches the incoming request. The return value of the `fallback` method in component determines that is a fallback or not.
